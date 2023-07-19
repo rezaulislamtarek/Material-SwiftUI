@@ -11,12 +11,16 @@ import SwiftUI
 public struct MTextField: View {
     @Binding public var text:String
     public var placeHolder : String
+    var color : Color
+    var cornerRadious : Float
     @State public var isTapped = false
     
-    public init(text: Binding<String>, placeHolder: String, isTapped: Bool = false) {
+    public init(text: Binding<String>, placeHolder: String, isTapped: Bool = false, color: Color, cornerRadious : Float) {
         self._text = text
         self.placeHolder = placeHolder
         self.isTapped = isTapped
+        self.color = color
+        self.cornerRadious = cornerRadious
     }
     
     public var body: some View {
@@ -45,6 +49,7 @@ public struct MTextField: View {
                         .foregroundColor( isTapped ? Color.accentColor : .gray)
                     , alignment: .leading
                 )
+                .padding(.horizontal)
                 
                 Rectangle()
                     .fill(isTapped ? Color.accentColor : Color.gray).opacity(isTapped ? 1 : 0.5)
@@ -53,9 +58,9 @@ public struct MTextField: View {
                 
             })
             .padding(.top,12)
-            .padding(.horizontal,12)
-            .background(Color.white.opacity(0.09))
-            .cornerRadius(10)
+            
+            .background(color.opacity(0.09))
+            .cornerRadius(CGFloat(cornerRadious))
         }
     }
 }
@@ -64,7 +69,7 @@ public struct MTextField: View {
 struct MTextField_Previews: PreviewProvider {
     
     static var previews: some View {
-        MTextField(text: .constant(""), placeHolder: "Enter text")
+        MTextField(text: .constant(""), placeHolder: "Enter text", color: Color.gray, cornerRadious: 16.0)
             .previewLayout(.sizeThatFits)
             .padding()
     }
