@@ -21,8 +21,6 @@ let package = Package(
         .target(
             name: "Material SwiftUI",
             dependencies: []),
-        .testTarget(
-            name: "Material SwiftUITests",
-            dependencies: ["Material SwiftUI"]),
+         
     ]
 )

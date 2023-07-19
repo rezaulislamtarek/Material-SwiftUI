@@ -13,8 +13,10 @@ public struct MTextField: View {
     public var placeHolder : String
     @State public var isTapped = false
     
-    public init( ) {
-        
+    public init(text: Binding<String>, placeHolder: String, isTapped: Bool = false) {
+        self._text = text
+        self.placeHolder = placeHolder
+        self.isTapped = isTapped
     }
     
     public var body: some View {
@@ -58,15 +60,15 @@ public struct MTextField: View {
     }
 }
 
-//@available(iOS 15.0.0, *)
-//struct MTextField_Previews: PreviewProvider {
-//
-//    static var previews: some View {
-//        MTextField
-//            .previewLayout(.sizeThatFits)
-//            .padding()
-//    }
-//}
+@available(iOS 15.0.0, *)
+struct MTextField_Previews: PreviewProvider {
+    
+    static var previews: some View {
+        MTextField(text: .constant(""), placeHolder: "Enter text")
+            .previewLayout(.sizeThatFits)
+            .padding()
+    }
+}
 
 
 
