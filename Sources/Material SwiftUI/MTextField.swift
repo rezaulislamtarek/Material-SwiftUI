@@ -9,9 +9,12 @@ import SwiftUI
 
 @available(iOS 15.0, *)
 public struct MTextField: View {
-    @Binding var text:String
-    var placeHolder : String
-    @State var isTapped = false
+    @Binding public var text:String
+    public var placeHolder : String
+    @State public var isTapped = false
+    
+    
+    
     public var body: some View {
         ZStack {
             VStack(alignment: .leading, spacing: 4, content: {
