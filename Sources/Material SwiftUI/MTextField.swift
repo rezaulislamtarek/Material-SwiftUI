@@ -69,7 +69,7 @@ public struct MTextField: View {
 struct MTextField_Previews: PreviewProvider {
     
     static var previews: some View {
-        MTextField(text: .constant(""), placeHolder: "Enter text", color: Color.gray, cornerRadious: 16.0)
+        MTextField(text: .constant(""), placeHolder: "Enter text", color: Color.gray, cornerRadious: 4.0)
             .previewLayout(.sizeThatFits)
             .padding()
     }
