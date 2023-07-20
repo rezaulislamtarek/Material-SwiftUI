@@ -28,8 +28,8 @@ public struct MSTextField: View {
     public var body: some View {
         ZStack(alignment: .leading) {
             Text(placeHolder)
-                .font(.system(isTapped ? .title3 : .title2))
-                .foregroundColor(isTapped ? .accentColor : .gray)
+                .font(.system(isTapped ? .title3 : .title2, design: .rounded))
+                .foregroundColor(isTapped ? .accentColor : .black.opacity(0.5))
                 .padding(.horizontal, isTapped ? 10 : 0)
                 .background(.white)
                 .offset(y: isTapped ? -28 : 0)
@@ -46,13 +46,16 @@ public struct MSTextField: View {
                     }
                 }
             }
+            .onSubmit {
+                isTapped = false
+            }
             .font(.system(.title2, design: .rounded))
             
             
             
         }
         // For ZStack
-        .animation(.easeOut)
+         
         .padding(.horizontal)
         .padding(.vertical,10)
         .background(
