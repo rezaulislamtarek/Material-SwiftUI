@@ -47,7 +47,10 @@ public struct MSTextField: View {
                 }
             }
             .onSubmit {
-                isTapped = false
+                    if text == "" { withAnimation(.easeOut){
+                        isTapped = false
+                    }
+                }
             }
             .font(.system(.title2, design: .rounded))
             
