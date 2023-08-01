@@ -37,7 +37,7 @@ public struct MSField: View {
                 .scaleEffect(isTapped ? 0.8 : 1, anchor: .leading)
             
             if showPassword {
-                Text(text)
+                TextField(text, text: $text)
             } else {
                 SecureField("", text: $text, onCommit: {isTapped = false})
                     .onTapGesture {
