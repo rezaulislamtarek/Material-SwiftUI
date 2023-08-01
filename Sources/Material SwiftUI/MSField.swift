@@ -15,6 +15,7 @@ public struct MSField: View {
     var color : Color
     var cornerRadious : Float
     @State public var isTapped = false
+    @State var showPassword : Bool = false
     
     public init(text: Binding<String>, placeHolder: String, isTapped: Bool = false, color: Color, cornerRadious : Float) {
         self._text = text
@@ -35,25 +36,32 @@ public struct MSField: View {
                 .offset(x: isTapped ? -8 : 0)
                 .scaleEffect(isTapped ? 0.8 : 1, anchor: .leading)
             
-
-            SecureField("", text: $text, onCommit: {isTapped = false})
-                .onTapGesture {
-                    withAnimation(.easeIn){
-                        isTapped = true
-                    }
-                }
-                .onSubmit {
-                    if text == "" {
-                        withAnimation(.easeOut){
-                            isTapped = false
+            if showPassword {
+                Text(text)
+            } else {
+                SecureField("", text: $text, onCommit: {isTapped = false})
+                    .onTapGesture {
+                        withAnimation(.easeIn){
+                            isTapped = true
                         }
                     }
-                }
-            .font(.system(.title2, design: .rounded))
+                    .onSubmit {
+                        if text == "" {
+                            withAnimation(.easeOut){
+                                isTapped = false
+                            }
+                        }
+                    }
+                .font(.system(.title2, design: .rounded))
+            }
+
+            
             
             HStack{
                 Spacer()
-                Image(systemName: "eye.slash.fill")
+                Image(systemName:  showPassword ? "eye" : "eye.slash.fill").onTapGesture {
+                    showPassword.toggle()
+                }
             }
             
             
