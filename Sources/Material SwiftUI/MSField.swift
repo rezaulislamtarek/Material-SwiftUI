@@ -35,23 +35,13 @@ public struct MSField: View {
                 .offset(x: isTapped ? -8 : 0)
                 .scaleEffect(isTapped ? 0.8 : 1, anchor: .leading)
             
-//            SecureField("", text: $text){ status in
-//                withAnimation(.easeIn){
-//                    isTapped = true
-//                }
-//            } onCommit: {
-//                    if text == "" { withAnimation(.easeOut){
-//                        isTapped = false
-//                    }
-//                }
-//            }
-//            .onSubmit {
-//                    if text == "" { withAnimation(.easeOut){
-//                        isTapped = false
-//                    }
-//                }
-//            }
-            SecureField("", text: $text)
+
+            SecureField("", text: $text, onCommit: {isTapped = false})
+                .onTapGesture {
+                    withAnimation(.easeIn){
+                        isTapped = true
+                    }
+                }
                 .onSubmit {
                     if text == "" {
                         withAnimation(.easeOut){
@@ -59,7 +49,12 @@ public struct MSField: View {
                         }
                     }
                 }
-            //.font(.system(.title2, design: .rounded))
+            .font(.system(.title2, design: .rounded))
+            
+            HStack{
+                Spacer()
+                Image(systemName: "eye.slash.fill")
+            }
             
             
             
@@ -79,7 +74,7 @@ public struct MSField: View {
     struct MSField_Previews: PreviewProvider {
         
         static var previews: some View {
-            MSTextField(text: .constant(""), placeHolder: "Enter text", color: Color.white, cornerRadious: 10.0)
+            MSField(text: .constant(""), placeHolder: "Enter text", color: Color.white, cornerRadious: 10.0)
                 .previewLayout(.sizeThatFits)
                 .padding()
         }
