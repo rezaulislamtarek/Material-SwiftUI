@@ -17,7 +17,7 @@ public struct MSTextField: View {
     var cornerRadious : Float
     @State public var isTapped = false
     
-    public init(text: Binding<String>, placeHolder: String, isTapped: Bool = false, color: Color, cornerRadious : Float) {
+    public init(text: Binding<String>, placeHolder: String, isTapped: Bool = false, color: Color = .black, cornerRadious : Float) {
         self._text = text
         self.placeHolder = placeHolder
         self.isTapped = isTapped
@@ -52,7 +52,7 @@ public struct MSTextField: View {
                     }
                 }
             }
-            .font(.system(.title2, design: .rounded))
+            //.font(.system(.title2, design: .rounded))
             
             
             
@@ -63,7 +63,7 @@ public struct MSTextField: View {
         .padding(.vertical,10)
         .background(
             RoundedRectangle(cornerRadius: CGFloat(cornerRadious))
-                .stroke(isTapped ? Color.accentColor : Color.gray.opacity(0.5), lineWidth: 1)
+                .stroke(isTapped ? Color.accentColor : Color.gray.opacity(0.5), lineWidth: 0.5)
         )
     }
 }
